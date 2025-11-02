@@ -1,0 +1,1033 @@
+<<<<<<< HEAD
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Team Dev & Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --muted:#717281;
+    --purple:#8A4FFF;
+    --purple-2:#6F3FE6;
+    --glass: rgba(111,63,230,0.06);
+    --radius:12px;
+    --container:1200px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg);
+    color:#0f1226;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* header */
+  header{
+    position:sticky;
+    top:0;
+    backdrop-filter: blur(6px);
+    background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.55));
+    border-bottom:1px solid rgba(16,18,29,0.04);
+    z-index:60;
+  }
+  .nav{
+    max-width:var(--container);
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:36px;height:36px;border-radius:8px;
+    background:linear-gradient(135deg,var(--purple),var(--purple-2));
+    box-shadow:0 6px 18px rgba(138,79,255,0.12);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+  }
+  nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;font-size:14px}
+  nav a:hover{color:#000}
+
+  .container{max-width:var(--container);margin:0 auto;padding:34px 20px}
+
+  /* hero */
+  .hero{
+    background: linear-gradient(180deg, rgba(138,79,255,0.04), rgba(111,63,230,0.02));
+    border-radius:14px;
+    padding:44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    box-shadow: 0 8px 40px rgba(11,7,16,0.03);
+  }
+  .hero-left{flex:1;min-width:280px}
+  .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(138,79,255,0.12), rgba(111,63,230,0.06));color:var(--purple);font-weight:700;margin-bottom:12px}
+  h1{margin:6px 0 12px;font-size:28px;line-height:1.08}
+  p.lead{color:var(--muted);margin:0 0 18px;max-width:780px}
+  .hero-ctas{display:flex;gap:12px}
+  .btn{padding:10px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--purple),var(--purple-2));color:#fff;box-shadow:0 10px 30px rgba(138,79,255,0.12)}
+  .btn-ghost{background:#fff;border:1px solid rgba(16,18,29,0.06);color:#111}
+
+  .hero-right{width:420px;flex-shrink:0}
+  .showcase{
+    background:linear-gradient(135deg,var(--purple),var(--purple-2));
+    color:#fff;padding:22px;border-radius:12px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+    box-shadow:0 12px 50px rgba(138,79,255,0.12);
+  }
+  .showcase small{opacity:.95}
+
+  /* services grid */
+  .section-title{margin:36px 0 18px;text-align:center}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(16,18,29,0.04);
+    overflow:hidden;
+    border:1px solid rgba(16,18,29,0.04);
+    display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,18,29,0.06)}
+  .card .thumb{width:100%;height:130px;background:#eaecef;display:block;object-fit:cover}
+  .card-body{padding:18px;display:flex;flex-direction:column;gap:10px}
+  .card-head{display:flex;gap:12px;align-items:flex-start}
+  .icon-dot{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#eaf0ff,#f6f7ff);display:flex;align-items:center;justify-content:center;color:var(--purple);font-weight:700;border:1px solid rgba(16,18,29,0.04)}
+  .h3{font-size:16px;margin:0}
+  .meta{color:var(--muted);font-size:14px}
+  .bullets{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+  .card-footer{padding:12px 18px;border-top:1px solid rgba(16,18,29,0.03);display:flex;align-items:center;justify-content:space-between}
+
+  /* horizontal gallery row (below the main grid, matches screenshot style where several images sit in a row) */
+  .gallery-row{display:flex;gap:12px;margin-top:18px}
+  .gallery-item{flex:1;height:120px;border-radius:10px;overflow:hidden;border:1px solid rgba(16,18,29,0.04)}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* contact area */
+  .contact-card{
+    margin-top:34px;
+    background:var(--card);padding:22px;border-radius:12px;border:1px solid rgba(16,18,29,0.04);
+    display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
+  }
+  .contact-left{flex:1;min-width:260px}
+  .contact-right{width:520px;flex-shrink:0}
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  input, textarea, select{
+    width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(16,18,29,0.06);
+    background:#fff;font-size:14px;color:#111;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .muted{color:var(--muted);font-size:13px}
+  .submit{width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--purple),var(--purple-2));color:#fff;font-weight:700;cursor:pointer;margin-top:8px}
+
+  /* footer */
+  footer{margin-top:20px;padding:26px 0;color:var(--muted);font-size:14px}
+  .footer-inner{max-width:var(--container);margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* responsive */
+  @media (max-width:1000px){
+    .service-grid{grid-template-columns:repeat(2,1fr)}
+    .hero-right{display:none}
+    .contact-right{width:100%}
+  }
+  @media (max-width:640px){
+    .nav{padding:10px 14px}
+    .service-grid{grid-template-columns:1fr}
+    .hero{padding:20px;flex-direction:column}
+    .hero-left{order:1}
+  }
+
+  /* small UI niceties */
+  .fade-in{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+  .fade-in.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">TD</div>
+      <div>
+        <div style="font-weight:700">Team Dev & Design</div>
+        <div style="font-size:12px;color:var(--muted)">Apps • AI • Design • Incubation</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#contact">Get Started</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section class="hero fade-in" id="top">
+    <div class="hero-left">
+      <div class="eyebrow">Transform your idea into reality</div>
+      <h1>From app development to AI solutions, visual design to startup incubation — we bring ideas to life.</h1>
+      <p class="lead">Fast prototypes, beautiful interfaces, reliable engineering and a startup-grade playbook — all under one team. We focus on outcomes and product-market fit.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Request a Service</button>
+        <button class="btn btn-ghost" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+      </div>
+    </div>
+
+    <aside class="hero-right">
+      <div class="showcase">
+        <small>Transformations • Product-led • Design-first</small>
+        <strong style="font-size:18px;margin-top:6px">Premium examples & case studies</strong>
+        <p style="margin:8px 0 0;color:rgba(255,255,255,0.96)">Clickable prototypes, short demo videos, and production apps. Replace these placeholders with your screenshots.</p>
+        <div style="margin-top:12px;border-radius:8px;overflow:hidden;width:100%;height:120px;display:block">
+          <img src="https://picsum.photos/seed/hero-1/800/480" alt="showcase" style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- SECTION title -->
+  <div class="section-title">
+    <h2 style="margin:0 0 6px">Our Services</h2>
+    <div class="muted">Comprehensive solutions to meet all your development and design needs</div>
+  </div>
+
+  <!-- SERVICES GRID -->
+  <section id="services" class="service-grid fade-in">
+    <!-- Card 1 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/mobile/1200/800" alt="Mobile App Development">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📱</div>
+          <div>
+            <div class="h3">Mobile App Development</div>
+            <div class="meta">Native & cross-platform apps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - iOS / Android / Flutter & React Native<br>
+          - UX-focused, performant apps<br>
+          - App store readiness & CI/CD
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: fintech, e-commerce, social</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/web/1200/800" alt="Web Development">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">💻</div>
+          <div>
+            <div class="h3">Web Development</div>
+            <div class="meta">Modern, responsive web apps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - SPA, SSR, PWAs<br>
+          - Scalable APIs & databases<br>
+          - Performance & accessibility
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: dashboards, marketplaces</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/desktop/1200/800" alt="Desktop Applications">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🖥️</div>
+          <div>
+            <div class="h3">Desktop Applications</div>
+            <div class="meta">Windows, macOS, Linux</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Electron / Tauri / native builds<br>
+          - Offline-first & sync patterns<br>
+          - Installer & distribution support
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: productivity & tools</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/visual/1200/800" alt="Visual Design">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🎨</div>
+          <div>
+            <div class="h3">Visual Design (branding)</div>
+            <div class="meta">Logos, brand systems, marketing assets</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Brand identity & guidelines<br>
+          - Social assets & print-ready files<br>
+          - Motion & UI kit
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: brand refresh, campaigns</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/present/1200/800" alt="Presentations">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📊</div>
+          <div>
+            <div class="h3">Presentations & Pitch Decks</div>
+            <div class="meta">Investor-ready storytelling</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Pitch decks & investor narratives<br>
+          - Animated slides & data viz<br>
+          - Templates & speaker notes
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: Series A-ready decks</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/video/1200/800" alt="Brand Videos & Demos">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🎬</div>
+          <div>
+            <div class="h3">Brand Videos & Demos</div>
+            <div class="meta">Explainers & product clips</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Short demos & walkthroughs<br>
+          - Motion design & editing<br>
+          - Social-ready formats
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: launch & demo videos</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/ai/1200/800" alt="AI / Deep Learning">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🤖</div>
+          <div>
+            <div class="h3">AI/Deep Learning</div>
+            <div class="meta">Custom ML, pipelines, MLOps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Prototypes, models & deployments<br>
+          - Data pipelines & inference at scale<br>
+          - Model optimization & monitoring
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: recommendation & CV</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/nocode/1200/800" alt="No-Code Prototypes">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">⚡</div>
+          <div>
+            <div class="h3">No-Code Prototypes</div>
+            <div class="meta">Fast validation & clickable UX</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Rapid prototypes & flows<br>
+          - Airtable / Bubble / Webflow stacks<br>
+          - Go-to-market test builds
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: landing & flows</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 9 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/system/1200/800" alt="System Diagrams">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📐</div>
+          <div>
+            <div class="h3">System Diagrams & Architecture</div>
+            <div class="meta">Clear infra & sequence diagrams</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Architecture & cost modeling<br>
+          - Sequence & data flow diagrams<br>
+          - Deployment & infra playbook
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: infra & scaling plans</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Gallery row (wide images like screenshot) -->
+  <div class="gallery-row">
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g1/1200/800" alt=""></div>
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g2/1200/800" alt=""></div>
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g3/1200/800" alt=""></div>
+  </div>
+
+  <!-- Contact / Request form -->
+  <section id="contact" class="contact-card fade-in" style="margin-bottom:18px">
+    <div class="contact-left">
+      <h3 style="margin:0 0 8px">Request a Service</h3>
+      <div class="muted">Tell us about your project and we'll get back to you within 24 hours.</div>
+
+      <div style="margin-top:12px" class="muted">Contact</div>
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">📧 hello@teamdev.design</div>
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">🔗 @teamdev.design</div>
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">📞 +00 000 000 000</div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <form id="requestForm" onsubmit="return handleSubmit(event)">
+        <div class="row">
+          <input type="text" id="name" placeholder="Full Name" required />
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div style="margin-top:10px" class="row">
+          <input type="text" id="phone" placeholder="Phone Number" />
+          <select id="serviceType">
+            <option value="">Service needed</option>
+            <option>Mobile App</option>
+            <option>Web App</option>
+            <option>AI/ML</option>
+            <option>Design / Branding</option>
+            <option>Video / Demo</option>
+            <option>Incubation</option>
+          </select>
+        </div>
+        <div style="margin-top:10px">
+          <textarea id="desc" placeholder="Project Description (short)"></textarea>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <input type="text" id="budget" placeholder="Estimated Budget (optional)" />
+          <input type="text" id="timeline" placeholder="Desired Timeline (optional)" />
+        </div>
+
+        <button class="submit" type="submit">Submit Request</button>
+        <div id="formMsg" style="margin-top:8px;font-size:13px;color:var(--muted)"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <strong>Team Dev & Design</strong> — All rights reserved</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="#" style="text-decoration:none;color:var(--muted)">Services</a>
+        <a href="#" style="text-decoration:none;color:var(--muted)">Get Started</a>
+        <a href="#" style="text-decoration:none;color:var(--muted)">Contact</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // small reveal on load/scroll
+  function reveal() {
+    document.querySelectorAll('.fade-in').forEach(el=>{
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 60) el.classList.add('show');
+    });
+  }
+  window.addEventListener('scroll', reveal);
+  window.addEventListener('load', reveal);
+
+  // simple form handler (no backend). Replace with actual API integration.
+  function handleSubmit(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('serviceType').value;
+    const desc = document.getElementById('desc').value.trim();
+    if(!name || !email) {
+      document.getElementById('formMsg').textContent = 'Name & email are required.';
+      return false;
+    }
+    // mock submit
+    document.getElementById('formMsg').textContent = 'Thanks — request received. We’ll reply within 24 hours.';
+    // clear form lightly
+    setTimeout(()=>{ document.getElementById('requestForm').reset(); }, 1200);
+    return false;
+  }
+
+  // pro tip: replace placeholder picsum URLs with your real images:
+  // e.g. document.querySelectorAll('.thumb')[0].src = '/assets/screens/mobile-01.jpg'
+</script>
+</body>
+</html>
+=======
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Team Dev & Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --muted:#717281;
+    --purple:#8A4FFF;
+    --purple-2:#6F3FE6;
+    --glass: rgba(111,63,230,0.06);
+    --radius:12px;
+    --container:1200px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg);
+    color:#0f1226;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* header */
+  header{
+    position:sticky;
+    top:0;
+    backdrop-filter: blur(6px);
+    background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.55));
+    border-bottom:1px solid rgba(16,18,29,0.04);
+    z-index:60;
+  }
+  .nav{
+    max-width:var(--container);
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:36px;height:36px;border-radius:8px;
+    background:linear-gradient(135deg,var(--purple),var(--purple-2));
+    box-shadow:0 6px 18px rgba(138,79,255,0.12);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+  }
+  nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;font-size:14px}
+  nav a:hover{color:#000}
+
+  .container{max-width:var(--container);margin:0 auto;padding:34px 20px}
+
+  /* hero */
+  .hero{
+    background: linear-gradient(180deg, rgba(138,79,255,0.04), rgba(111,63,230,0.02));
+    border-radius:14px;
+    padding:44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    box-shadow: 0 8px 40px rgba(11,7,16,0.03);
+  }
+  .hero-left{flex:1;min-width:280px}
+  .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(138,79,255,0.12), rgba(111,63,230,0.06));color:var(--purple);font-weight:700;margin-bottom:12px}
+  h1{margin:6px 0 12px;font-size:28px;line-height:1.08}
+  p.lead{color:var(--muted);margin:0 0 18px;max-width:780px}
+  .hero-ctas{display:flex;gap:12px}
+  .btn{padding:10px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--purple),var(--purple-2));color:#fff;box-shadow:0 10px 30px rgba(138,79,255,0.12)}
+  .btn-ghost{background:#fff;border:1px solid rgba(16,18,29,0.06);color:#111}
+
+  .hero-right{width:420px;flex-shrink:0}
+  .showcase{
+    background:linear-gradient(135deg,var(--purple),var(--purple-2));
+    color:#fff;padding:22px;border-radius:12px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+    box-shadow:0 12px 50px rgba(138,79,255,0.12);
+  }
+  .showcase small{opacity:.95}
+
+  /* services grid */
+  .section-title{margin:36px 0 18px;text-align:center}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(16,18,29,0.04);
+    overflow:hidden;
+    border:1px solid rgba(16,18,29,0.04);
+    display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,18,29,0.06)}
+  .card .thumb{width:100%;height:130px;background:#eaecef;display:block;object-fit:cover}
+  .card-body{padding:18px;display:flex;flex-direction:column;gap:10px}
+  .card-head{display:flex;gap:12px;align-items:flex-start}
+  .icon-dot{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#eaf0ff,#f6f7ff);display:flex;align-items:center;justify-content:center;color:var(--purple);font-weight:700;border:1px solid rgba(16,18,29,0.04)}
+  .h3{font-size:16px;margin:0}
+  .meta{color:var(--muted);font-size:14px}
+  .bullets{margin:6px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+  .card-footer{padding:12px 18px;border-top:1px solid rgba(16,18,29,0.03);display:flex;align-items:center;justify-content:space-between}
+
+  /* horizontal gallery row (below the main grid, matches screenshot style where several images sit in a row) */
+  .gallery-row{display:flex;gap:12px;margin-top:18px}
+  .gallery-item{flex:1;height:120px;border-radius:10px;overflow:hidden;border:1px solid rgba(16,18,29,0.04)}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* contact area */
+  .contact-card{
+    margin-top:34px;
+    background:var(--card);padding:22px;border-radius:12px;border:1px solid rgba(16,18,29,0.04);
+    display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
+  }
+  .contact-left{flex:1;min-width:260px}
+  .contact-right{width:520px;flex-shrink:0}
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  input, textarea, select{
+    width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(16,18,29,0.06);
+    background:#fff;font-size:14px;color:#111;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .muted{color:var(--muted);font-size:13px}
+  .submit{width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--purple),var(--purple-2));color:#fff;font-weight:700;cursor:pointer;margin-top:8px}
+
+  /* footer */
+  footer{margin-top:20px;padding:26px 0;color:var(--muted);font-size:14px}
+  .footer-inner{max-width:var(--container);margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* responsive */
+  @media (max-width:1000px){
+    .service-grid{grid-template-columns:repeat(2,1fr)}
+    .hero-right{display:none}
+    .contact-right{width:100%}
+  }
+  @media (max-width:640px){
+    .nav{padding:10px 14px}
+    .service-grid{grid-template-columns:1fr}
+    .hero{padding:20px;flex-direction:column}
+    .hero-left{order:1}
+  }
+
+  /* small UI niceties */
+  .fade-in{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+  .fade-in.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo">TD</div>
+      <div>
+        <div style="font-weight:700">Team Dev & Design</div>
+        <div style="font-size:12px;color:var(--muted)">Apps • AI • Design • Incubation</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#contact">Get Started</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section class="hero fade-in" id="top">
+    <div class="hero-left">
+      <div class="eyebrow">Transform your idea into reality</div>
+      <h1>From app development to AI solutions, visual design to startup incubation — we bring ideas to life.</h1>
+      <p class="lead">Fast prototypes, beautiful interfaces, reliable engineering and a startup-grade playbook — all under one team. We focus on outcomes and product-market fit.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Request a Service</button>
+        <button class="btn btn-ghost" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+      </div>
+    </div>
+
+    <aside class="hero-right">
+      <div class="showcase">
+        <small>Transformations • Product-led • Design-first</small>
+        <strong style="font-size:18px;margin-top:6px">Premium examples & case studies</strong>
+        <p style="margin:8px 0 0;color:rgba(255,255,255,0.96)">Clickable prototypes, short demo videos, and production apps. Replace these placeholders with your screenshots.</p>
+        <div style="margin-top:12px;border-radius:8px;overflow:hidden;width:100%;height:120px;display:block">
+          <img src="https://picsum.photos/seed/hero-1/800/480" alt="showcase" style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- SECTION title -->
+  <div class="section-title">
+    <h2 style="margin:0 0 6px">Our Services</h2>
+    <div class="muted">Comprehensive solutions to meet all your development and design needs</div>
+  </div>
+
+  <!-- SERVICES GRID -->
+  <section id="services" class="service-grid fade-in">
+    <!-- Card 1 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/mobile/1200/800" alt="Mobile App Development">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📱</div>
+          <div>
+            <div class="h3">Mobile App Development</div>
+            <div class="meta">Native & cross-platform apps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - iOS / Android / Flutter & React Native<br>
+          - UX-focused, performant apps<br>
+          - App store readiness & CI/CD
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: fintech, e-commerce, social</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/web/1200/800" alt="Web Development">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">💻</div>
+          <div>
+            <div class="h3">Web Development</div>
+            <div class="meta">Modern, responsive web apps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - SPA, SSR, PWAs<br>
+          - Scalable APIs & databases<br>
+          - Performance & accessibility
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: dashboards, marketplaces</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/desktop/1200/800" alt="Desktop Applications">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🖥️</div>
+          <div>
+            <div class="h3">Desktop Applications</div>
+            <div class="meta">Windows, macOS, Linux</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Electron / Tauri / native builds<br>
+          - Offline-first & sync patterns<br>
+          - Installer & distribution support
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: productivity & tools</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/visual/1200/800" alt="Visual Design">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🎨</div>
+          <div>
+            <div class="h3">Visual Design (branding)</div>
+            <div class="meta">Logos, brand systems, marketing assets</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Brand identity & guidelines<br>
+          - Social assets & print-ready files<br>
+          - Motion & UI kit
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: brand refresh, campaigns</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/present/1200/800" alt="Presentations">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📊</div>
+          <div>
+            <div class="h3">Presentations & Pitch Decks</div>
+            <div class="meta">Investor-ready storytelling</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Pitch decks & investor narratives<br>
+          - Animated slides & data viz<br>
+          - Templates & speaker notes
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: Series A-ready decks</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/video/1200/800" alt="Brand Videos & Demos">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🎬</div>
+          <div>
+            <div class="h3">Brand Videos & Demos</div>
+            <div class="meta">Explainers & product clips</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Short demos & walkthroughs<br>
+          - Motion design & editing<br>
+          - Social-ready formats
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: launch & demo videos</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/ai/1200/800" alt="AI / Deep Learning">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">🤖</div>
+          <div>
+            <div class="h3">AI/Deep Learning</div>
+            <div class="meta">Custom ML, pipelines, MLOps</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Prototypes, models & deployments<br>
+          - Data pipelines & inference at scale<br>
+          - Model optimization & monitoring
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: recommendation & CV</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/nocode/1200/800" alt="No-Code Prototypes">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">⚡</div>
+          <div>
+            <div class="h3">No-Code Prototypes</div>
+            <div class="meta">Fast validation & clickable UX</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Rapid prototypes & flows<br>
+          - Airtable / Bubble / Webflow stacks<br>
+          - Go-to-market test builds
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: landing & flows</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+
+    <!-- Card 9 -->
+    <article class="card">
+      <img class="thumb" src="https://picsum.photos/seed/system/1200/800" alt="System Diagrams">
+      <div class="card-body">
+        <div class="card-head">
+          <div class="icon-dot">📐</div>
+          <div>
+            <div class="h3">System Diagrams & Architecture</div>
+            <div class="meta">Clear infra & sequence diagrams</div>
+          </div>
+        </div>
+        <div class="bullets">
+          - Architecture & cost modeling<br>
+          - Sequence & data flow diagrams<br>
+          - Deployment & infra playbook
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="muted">Examples: infra & scaling plans</div>
+        <div style="font-weight:700;color:var(--purple)">View</div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Gallery row (wide images like screenshot) -->
+  <div class="gallery-row">
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g1/1200/800" alt=""></div>
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g2/1200/800" alt=""></div>
+    <div class="gallery-item"><img src="https://picsum.photos/seed/g3/1200/800" alt=""></div>
+  </div>
+
+  <!-- Contact / Request form -->
+  <section id="contact" class="contact-card fade-in" style="margin-bottom:18px">
+    <div class="contact-left">
+      <h3 style="margin:0 0 8px">Request a Service</h3>
+      <div class="muted">Tell us about your project and we'll get back to you within 24 hours.</div>
+
+      <div style="margin-top:12px" class="muted">Contact</div>
+      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">📧 hello@teamdev.design</div>
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">🔗 @teamdev.design</div>
+        <div style="background:var(--glass);padding:8px 12px;border-radius:10px">📞 +00 000 000 000</div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <form id="requestForm" onsubmit="return handleSubmit(event)">
+        <div class="row">
+          <input type="text" id="name" placeholder="Full Name" required />
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div style="margin-top:10px" class="row">
+          <input type="text" id="phone" placeholder="Phone Number" />
+          <select id="serviceType">
+            <option value="">Service needed</option>
+            <option>Mobile App</option>
+            <option>Web App</option>
+            <option>AI/ML</option>
+            <option>Design / Branding</option>
+            <option>Video / Demo</option>
+            <option>Incubation</option>
+          </select>
+        </div>
+        <div style="margin-top:10px">
+          <textarea id="desc" placeholder="Project Description (short)"></textarea>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <input type="text" id="budget" placeholder="Estimated Budget (optional)" />
+          <input type="text" id="timeline" placeholder="Desired Timeline (optional)" />
+        </div>
+
+        <button class="submit" type="submit">Submit Request</button>
+        <div id="formMsg" style="margin-top:8px;font-size:13px;color:var(--muted)"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <strong>Team Dev & Design</strong> — All rights reserved</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="#" style="text-decoration:none;color:var(--muted)">Services</a>
+        <a href="#" style="text-decoration:none;color:var(--muted)">Get Started</a>
+        <a href="#" style="text-decoration:none;color:var(--muted)">Contact</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // small reveal on load/scroll
+  function reveal() {
+    document.querySelectorAll('.fade-in').forEach(el=>{
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 60) el.classList.add('show');
+    });
+  }
+  window.addEventListener('scroll', reveal);
+  window.addEventListener('load', reveal);
+
+  // simple form handler (no backend). Replace with actual API integration.
+  function handleSubmit(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('serviceType').value;
+    const desc = document.getElementById('desc').value.trim();
+    if(!name || !email) {
+      document.getElementById('formMsg').textContent = 'Name & email are required.';
+      return false;
+    }
+    // mock submit
+    document.getElementById('formMsg').textContent = 'Thanks — request received. We’ll reply within 24 hours.';
+    // clear form lightly
+    setTimeout(()=>{ document.getElementById('requestForm').reset(); }, 1200);
+    return false;
+  }
+
+  // pro tip: replace placeholder picsum URLs with your real images:
+  // e.g. document.querySelectorAll('.thumb')[0].src = '/assets/screens/mobile-01.jpg'
+</script>
+</body>
+</html>
+>>>>>>> 84e13f8c34d3228d600c73f8e7b4b315fc5a4e01

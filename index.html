@@ -1,0 +1,1388 @@
+<<<<<<< HEAD
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team Dev & Design — Premium Dev Studio</title>
+  <meta name="description" content="App dev, AI/ML, visual design, prototypes and startup incubation. Bilingual — English & Arabic." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --panel:#ffffff;
+      --muted:#6b7280;
+      --purple:#8A4FFF; /* primary */
+      --blue:#3B82F6; /* accent */
+      --glass: rgba(138,79,255,0.08);
+      --glass-2: rgba(59,130,246,0.06);
+      --radius:14px;
+      --max:1200px;
+      --text:#0b1220;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      background:linear-gradient(180deg,#fbfbfe 0%, #f3f5fb 100%);
+      color:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased;
+      padding-bottom:80px;
+    }
+    .wrap{max-width:var(--max);margin:0 auto;padding:18px}
+
+    /* top thin bar like prototype */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(11,15,26,0.04);background:transparent}
+    .top-left{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .nav-mini{display:flex;gap:18px;align-items:center}
+    .nav-mini a{font-weight:600;color:var(--muted);text-decoration:none;font-size:14px}
+
+    /* hero band that spans full width like prototype */
+    .hero-band{background:linear-gradient(180deg, rgba(138,79,255,0.12), rgba(59,130,246,0.06));border-radius:14px;padding:48px 36px;margin:22px 0;display:flex;justify-content:space-between;align-items:center}
+    .hero-left{max-width:720px}
+    .hero-left h1{margin:0;font-size:30px;color:#07112a}
+    .hero-left p{margin:12px 0 0;color:var(--muted)}
+    .hero-actions{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--purple),var(--blue));color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(11,15,26,0.06)}
+
+    /* thin divider */
+    .divider{height:8px;background:linear-gradient(90deg, rgba(138,79,255,0.06), rgba(59,130,246,0.02));border-radius:6px;margin:18px 0}
+
+    /* services area like prototype: card rows with subtle shadow and small icons */
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+    .section-title h2{margin:0}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .service-card{background:var(--panel);border-radius:10px;padding:16px;box-shadow:0 8px 22px rgba(11,15,26,0.04);display:flex;gap:12px;align-items:flex-start}
+    .service-card img{width:100px;height:72px;object-fit:cover;border-radius:8px}
+    .service-info h3{margin:0 0 6px;font-size:16px}
+    .service-info p{margin:0;color:var(--muted);font-size:13px}
+    .service-price{margin-top:10px;font-weight:700}
+
+    /* three rows of cards with visuals below header like prototype */
+    .cards-row{display:flex;gap:12px;margin-top:18px}
+    .card-big{flex:1;background:var(--panel);border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(11,15,26,0.04)}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+
+    /* projects gallery (image tiles) */
+    .projects-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    .tile{background:var(--panel);border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(11,15,26,0.04)}
+    .tile img{width:100%;height:140px;object-fit:cover}
+    .tile .meta{padding:12px}
+
+    /* pricing blocks like prototype */
+    .pricing-row{display:flex;gap:12px;margin-top:18px}
+    .price-card{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:10px;flex:1;box-shadow:0 10px 30px rgba(2,6,23,0.04)}
+    .price-card h3{margin:0}
+    .price-card .cost{font-size:20px;margin-top:6px;font-weight:800}
+
+    /* request form wide like prototype */
+    .request-section{background:var(--panel);padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 12px 40px rgba(11,15,26,0.05)}
+    .request-grid{display:grid;grid-template-columns:1fr 420px;gap:18px}
+    .request-left label{display:block;font-weight:700;margin-bottom:6px}
+    .input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(11,15,26,0.06);background:transparent;margin-bottom:12px}
+    .submit-btn{display:block;width:100%;padding:14px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--blue));color:white;border:none;font-weight:800}
+
+    /* faq grid */
+    .faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .faq{background:var(--panel);padding:14px;border-radius:10px}
+
+    /* footer dark band */
+    footer{background:#0b1220;color:#cbd5e1;padding:18px;border-radius:8px;margin-top:26px}
+    footer a{color:#cbd5e1;text-decoration:none}
+
+    /* responsiveness */
+    @media (max-width:1000px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .projects-tiles{grid-template-columns:repeat(2,1fr)}
+      .request-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:700px){
+      .services-grid{grid-template-columns:1fr}
+      .projects-tiles{grid-template-columns:1fr}
+      .cards-row{flex-direction:column}
+      .hero-band{flex-direction:column;align-items:flex-start}
+    }
+
+    /* animations */
+    .anim-fade{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+    .anim-fade.show{opacity:1;transform:none}
+
+    .service-section {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 20px;
+}
+
+.service-block {
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(11,15,26,0.04);
+  padding: 20px;
+  transition: transform .3s ease;
+}
+.service-block:hover { transform: translateY(-3px); }
+
+.service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.service-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.service-header .price {
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.service-desc {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.service-gallery {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 10px;
+}
+.service-gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: scale-down;
+  background-color: #f3f4f6; /* optional backdrop */
+  border-radius: 10px;
+}
+.service-gallery img:hover {
+  transform: scale(1.08);
+}
+/* Special style for tall mobile screenshots */
+.service-gallery img[src*="mobile"], 
+.service-gallery img[alt*="mobile"] {
+  height: auto;
+  max-height: 400px;         /* adjusts how tall it can be */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  background-color: #f9fafb; /* subtle light backdrop */
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.service-block h3:contains("Mobile") ~ .service-gallery {
+  grid-template-columns: 1fr;
+}
+.mobile-gallery {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-items: center;
+}
+.mobile-gallery img {
+  height: auto;
+  width: auto;
+  max-height: 420px;
+  object-fit: contain;
+}
+/* General gallery base */
+.service-gallery {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 🧱 Prototypes — small horizontal images */
+.gallery-prototypes {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.gallery-prototypes img {
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 📱 Mobile Apps — tall phone screenshots */
+.gallery-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.gallery-mobile img {
+  height: 420px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* 💻 Web — wide desktop captures */
+.gallery-web {
+  grid-template-columns: 1fr;
+}
+.gallery-web img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+/* 🪶 Logos — small squares */
+.gallery-logos {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.gallery-logos img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+/* 📚 Book Covers — vertical art */
+.gallery-books {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.gallery-books img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* 💌 Invitations — decorative verticals */
+.gallery-invites {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.gallery-invites img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+/* 💼 Business Cards — vertical rectangle design */
+.gallery-business {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  justify-items: center;
+  align-items: start;
+  padding: 8px;
+}
+
+.gallery-business img {
+  width: auto;
+  height: 340px;                 /* keeps them balanced visually */
+  max-width: 100%;
+  object-fit: contain;            /* shows full design without crop */
+  border-radius: 16px;
+  background: #f9fafb;            /* subtle neutral frame */
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover effect */
+.gallery-business img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+}
+/* 🧩 Presentations — landscape 16:9 slides */
+.gallery-presentations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  padding: 10px;
+}
+
+.gallery-presentations img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;             /* keeps consistent shape */
+  object-fit: contain;              /* shows the full slide */
+  border-radius: 14px;
+  background: #f9fafb;              /* subtle neutral frame */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover lift */
+.gallery-presentations img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.gallery-cv {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-cv img {
+  width: 260px;             /* fixed width */
+  height: auto;             /* keeps correct 1414x2000 ratio */
+  border-radius: 12px;
+  background: #f5f6fa;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-cv img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="top-left">
+        <div class="brand"><div class="logo">TD&D</div><div><div style="font-weight:700">Team Dev & Design</div><div style="font-size:12px;color:var(--muted)">App dev • AI • Design</div></div></div>
+      </div>
+      <div class="nav-mini">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero-band anim-fade" id="home">
+      <div class="hero-left">
+        <h1 data-en>Transform your idea into reality</h1>
+        <p data-en>From app development to AI solutions — we design, build and incubate startups. Student-friendly pricing & fast response.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="reqHero">Request a Service</button>
+          <button class="btn btn-ghost" id="exploreHero">Explore Services</button>
+        </div>
+      </div>
+      <div style="width:420px">
+        <div style="background:white;border-radius:12px;padding:14px;box-shadow:0 10px 30px rgba(11,15,26,0.06)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;color:white">TD</div>
+            <div>
+              <div style="font-weight:700">Quick Summary</div>
+              <div style="font-size:13px;color:var(--muted)">App dev • AI/ML • Design • Prototypes • Incubation</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;justify-content:space-between">
+            <button class="btn btn-ghost">Get Started</button>
+            <button class="btn btn-primary" id="sideContact">Contact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+<section id="services" class="anim-fade">
+  <div class="section-title">
+    <h2 data-en>Our Services</h2>
+    <div style="color:var(--muted);font-size:14px">Comprehensive solutions for students & startups</div>
+  </div>
+
+  <div class="service-section">
+
+            <!-- presentations -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Prototypes</h3>
+        <div class="price">From 5000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        <p class="service-intro">
+              Presentations should speak even when you don’t. Slides that flow smooth — strong visuals, no clutter, straight to the point.
+</p>
+
+      </div>
+      <div class="service-gallery gallery-presentations">
+        <img src="imgs\presentation\Design Pattern MVVM.jpg" alt="proto1">
+        <img src="imgs\presentation\MeQat Presentation.jpg" alt="proto2">
+        <img src="imgs\presentation\zeus.jpg" alt="proto3">
+      </div>
+    </div>
+
+        <!-- Prototypes -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Prototypes</h3>
+        <div class="price">From 8000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Rapid Figma prototypes and clickable demos for testing and investor presentations.
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="https://picsum.photos/seed/proto1/400/250" alt="proto1">
+        <img src="https://picsum.photos/seed/proto2/400/250" alt="proto2">
+        <img src="https://picsum.photos/seed/proto3/400/250" alt="proto3">
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Mobile App Development</h3>
+        <div class="price">From 13,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Native & cross-platform apps (Flutter, Android). We build fast, clean mobile experiences.
+      </div>
+      <div class="service-gallery mobile-gallery">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-39.jpg" alt="mobile app 1">
+        <img src="imgs\mobile\photo_2025-06-08_21-58-57.jpg" alt="mobile app 2">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-14.jpg" alt="mobile app 3">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-43.jpg" alt="mobile app 5">
+      </div>
+    </div>
+
+    <!-- web -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Web Development</h3>
+        <div class="price">From 16,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Modern responsive websites, dashboards, and PWAs — built to impress and perform.
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="imgs\web\Screenshot 2025-11-02 125551.png" alt="web 1">
+        <img src="imgs\web\Screenshot 2025-10-31 112943.png" alt="web 2">
+        <img src="imgs\web\Screenshot 2025-10-31 113013.png" alt="web 3">
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>AI Models</h3>
+        <div class="price">From 20,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Model prototyping, training, and deployment. Deep learning, Maching learning..
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="imgs\ai\Screenshot 2025-11-02 231542.png" alt="ai1">
+        <img src="imgs\ai\Screenshot 2025-11-02 231601.png" alt="ai2">
+        <img src="https://picsum.photos/seed/ai3/400/250" alt="ai3">
+      </div>
+    </div>
+
+        <!-- logo -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Logo && Branding </h3>
+        <div class="price">From 6000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Logos and brand kits. Make your product unforgettable.
+      </div>
+      <div class="service-gallery mobile-gallery">
+        
+        <img src="imgs\logos\photo_2025-11-02_17-02-56.jpg" alt="design3">
+        <img src="imgs\logos\photo_2025-11-02_16-48-04.jpg" alt="design4">
+        <img src="imgs\logos\photo_2025-11-02_17-00-27.jpg" alt="design5">
+        <img src="imgs\logos\photo_2025-11-02_16-47-58.jpg" alt="design1">
+      </div>
+    </div>
+
+    <!-- Business Cards -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Business Cards && Branding </h3>
+        <div class="price">From 6000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Visual identities. Mark your presence.
+      </div>
+      <div class="service-gallery gallery-business">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-18.jpg" alt="design1">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-28.jpg" alt="design2">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-35.jpg" alt="design3">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-37.jpg" alt="design4">
+      </div>
+    </div>
+
+        <!-- Books -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Book Covers</h3>
+        <div class="price">From 10000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Turn ideas into covers. To catch your story.
+      </div>
+      <div class="service-gallery gallery-books">
+        <img src="imgs\books\DEAR GRAVITY (4).jpg" alt="design1">
+        <img src="imgs\books\How to Disappear Entirely (4).jpg" alt="design2">
+        <img src="imgs\books\The Archivist of Lost Things (3).jpg" alt="design3">
+        <img src="imgs\books\Soft Apocalypse (6).jpg" alt="design4">
+      </div>
+    </div>
+
+            <!-- invites -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Events invitations</h3>
+        <div class="price">From 5000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Your event invites. Make your guests amazed.
+      </div>
+      <div class="service-gallery gallery-invites">
+        <img src="imgs\invitations\wed inv1.jpg" alt="design1">
+        <img src="imgs\invitations\wed inv6.jpg" alt="design2">
+        <img src="imgs\invitations\wed inv7.jpg" alt="design3">
+        <img src="imgs\invitations\wed inv10.jpg" alt="design4">
+      </div>
+    </div>
+    
+<!-- CV Design -->
+<div class="service-block">
+  <div class="service-header">
+    <h3 data-en>CV / Resume Design</h3>
+    <div class="price">From 5,000 DA</div>
+  </div>
+  <div class="service-desc" data-en>
+    Professionally designed CVs and resumes that stand out in job or university applications. Clean, modern layouts tailored to your field — because first impressions matter.
+  </div>
+  <div class="service-gallery gallery-cv">
+    <img src="imgs/cv/Djelab Nourhane.jpg" alt="CV design 1">
+    <img src="imgs/cv/GOUCEM_Meriem_Malak_CV.jpg" alt="CV design 2">
+    <img src="imgs/cv/Modern Professional CV Resume.jpg" alt="CV design 3">
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+
+    <section id="projects" class="anim-fade">
+      <div class="section-title" style="margin-top:22px">
+        <h2 data-en>Projects</h2>
+        <div style="color:var(--muted);font-size:14px">Work with universities & startups</div>
+      </div>
+      <div class="projects-tiles">
+        <div class="tile"><img src="https://picsum.photos/seed/p1/600/300" alt="p1"><div class="meta"><strong>Campus App</strong><div class="muted">Mobile for students</div></div></div>
+        <div class="tile"><img src="https://picsum.photos/seed/p2/600/300" alt="p2"><div class="meta"><strong>ML Research Tool</strong><div class="muted">Research & dashboards</div></div></div>
+        <div class="tile"><img src="https://picsum.photos/seed/p3/600/300" alt="p3"><div class="meta"><strong>Branding — Cassandre</strong><div class="muted">Identity & assets</div></div></div>
+      </div>
+    </section>
+
+    <section id="pricing" class="anim-fade">
+      <div class="section-title" style="margin-top:22px">
+        <h2 data-en>Pricing</h2>
+        <div style="color:var(--muted);font-size:14px">Transparent, student-first prices</div>
+      </div>
+      <div class="pricing-row">
+        <div class="price-card"><h3>Student Pack</h3><div class="cost">$120</div><div class="muted">Landing + UI — 1 week</div></div>
+        <div class="price-card"><h3>Startup Pack</h3><div class="cost">$600</div><div class="muted">MVP + prototype — 3-4 weeks</div></div>
+        <div class="price-card"><h3>Growth Pack</h3><div class="cost">$1,800</div><div class="muted">Full product + docs</div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="anim-fade">
+      <div class="section-title" style="margin-top:22px"><h2 data-en>Request a Service</h2><div style="color:var(--muted);font-size:14px">Fill the form or email us — no payments on-site</div></div>
+
+      <div class="request-section">
+        <div class="request-grid">
+          <div class="request-left">
+            <form id="requestForm">
+              <label for="name" data-en>Full Name</label>
+              <input id="name" name="name" class="input" placeholder="Your name" required />
+
+              <label for="email" data-en>Email</label>
+              <input id="email" name="email" type="email" class="input" placeholder="you@domain.com" required />
+
+              <label for="service" data-en>Service Needed</label>
+              <select id="service" name="service" class="input">
+                <option value="mobile">Mobile App Development</option>
+                <option value="web">Web Development</option>
+                <option value="ai">AI / Deep Learning</option>
+                <option value="design">Visual Design</option>
+                <option value="prototype">No-code Prototype</option>
+              </select>
+
+              <label for="budget" data-en>Estimated Budget</label>
+              <input id="budget" name="budget" class="input" placeholder="$" />
+
+              <label for="desc" data-en>Project Description</label>
+              <textarea id="desc" name="desc" rows="5" class="input" placeholder="Short description..." required></textarea>
+
+              <button class="submit-btn" type="submit">Submit Request</button>
+            </form>
+          </div>
+
+          <aside style="background:linear-gradient(180deg, rgba(138,79,255,0.06), rgba(59,130,246,0.03));padding:18px;border-radius:10px">
+            <div style="font-weight:800">Request a Service</div>
+            <div style="color:var(--muted);margin-top:8px;font-size:14px">Tell us about your project and we’ll get back within 24 hours.</div>
+            <div style="margin-top:12px;font-size:14px">
+              <div><strong>Email</strong>: <a href="mailto:hello@teamdev.design">goucem.meriemmalak.001@gmail.com</a></div>
+              <div style="margin-top:8px"><strong>Social</strong>: FB • Instagram • Telegram</div>
+              <div style="margin-top:12px;color:var(--muted);font-size:13px">We don't charge on-site. Prices are display-only. For custom quotes contact us.</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="anim-fade">
+      <div class="section-title" style="margin-top:22px"><h2 data-en>FAQ</h2><div style="color:var(--muted);font-size:14px">Quick answers</div></div>
+      <div class="faq-grid">
+        <div class="faq"><strong data-en>How long till first demo?</strong><p class="muted">Usually 1–2 weeks for a basic prototype.</p></div>
+        <div class="faq"><strong data-en>Do you work with startups?</strong><p class="muted">Yes — incubation & go-to-market support available.</p></div>
+        <div class="faq"><strong data-en>Is pricing flexible?</strong><p class="muted">Student discounts and phased payments available.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:800">Team Dev & Design</div>
+          <div style="color:#94a3b8">© 2025 — All rights reserved</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a href="mailto:hello@teamdev.design">hello@teamdev.design</a>
+          <a href="#">FB</a>
+          <a href="#">Instagram</a>
+          <a href="#">Telegram</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // reveal animation
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:0.12});
+    document.querySelectorAll('.anim-fade').forEach(el=>obs.observe(el));
+
+    // smooth anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h.length>1){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth',block:'start'}); } }));
+
+    // form submit emulation
+    document.getElementById('requestForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = Object.fromEntries(new FormData(e.target));
+      console.log('submit',fd);
+      const toast = document.createElement('div'); toast.textContent='Request received — we will reply within 24h';
+      toast.style.position='fixed';toast.style.left='50%';toast.style.transform='translateX(-50%)';toast.style.bottom='24px';toast.style.padding='12px 18px';toast.style.background='linear-gradient(90deg,var(--purple),var(--blue))';toast.style.color='white';toast.style.borderRadius='10px';toast.style.boxShadow='0 10px 30px rgba(11,15,26,0.2)';document.body.appendChild(toast);
+      setTimeout(()=>{toast.remove();},3200);
+      e.target.reset();
+    });
+
+    // hero buttons
+    document.getElementById('reqHero').addEventListener('click', ()=> location.hash='#contact');
+    document.getElementById('exploreHero').addEventListener('click', ()=> location.hash='#services');
+    document.getElementById('sideContact').addEventListener('click', ()=> location.hash='#contact');
+  </script>
+</body>
+=======
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team Dev & Design — Premium Dev Studio</title>
+  <meta name="description" content="App dev, AI/ML, visual design, prototypes and startup incubation. Bilingual — English & Arabic." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --panel:#ffffff;
+      --muted:#6b7280;
+      --purple:#8A4FFF; /* primary */
+      --blue:#3B82F6; /* accent */
+      --glass: rgba(138,79,255,0.08);
+      --glass-2: rgba(59,130,246,0.06);
+      --radius:14px;
+      --max:1200px;
+      --text:#0b1220;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      background:linear-gradient(180deg,#fbfbfe 0%, #f3f5fb 100%);
+      color:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased;
+      padding-bottom:80px;
+    }
+    .wrap{max-width:var(--max);margin:0 auto;padding:18px}
+
+    /* top thin bar like prototype */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(11,15,26,0.04);background:transparent}
+    .top-left{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .nav-mini{display:flex;gap:18px;align-items:center}
+    .nav-mini a{font-weight:600;color:var(--muted);text-decoration:none;font-size:14px}
+
+    /* hero band that spans full width like prototype */
+    .hero-band{background:linear-gradient(180deg, rgba(138,79,255,0.12), rgba(59,130,246,0.06));border-radius:14px;padding:48px 36px;margin:22px 0;display:flex;justify-content:space-between;align-items:center}
+    .hero-left{max-width:720px}
+    .hero-left h1{margin:0;font-size:30px;color:#07112a}
+    .hero-left p{margin:12px 0 0;color:var(--muted)}
+    .hero-actions{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--purple),var(--blue));color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(11,15,26,0.06)}
+
+    /* thin divider */
+    .divider{height:8px;background:linear-gradient(90deg, rgba(138,79,255,0.06), rgba(59,130,246,0.02));border-radius:6px;margin:18px 0}
+
+    /* services area like prototype: card rows with subtle shadow and small icons */
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+    .section-title h2{margin:0}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .service-card{background:var(--panel);border-radius:10px;padding:16px;box-shadow:0 8px 22px rgba(11,15,26,0.04);display:flex;gap:12px;align-items:flex-start}
+    .service-card img{width:100px;height:72px;object-fit:cover;border-radius:8px}
+    .service-info h3{margin:0 0 6px;font-size:16px}
+    .service-info p{margin:0;color:var(--muted);font-size:13px}
+    .service-price{margin-top:10px;font-weight:700}
+
+    /* three rows of cards with visuals below header like prototype */
+    .cards-row{display:flex;gap:12px;margin-top:18px}
+    .card-big{flex:1;background:var(--panel);border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(11,15,26,0.04)}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+
+    /* projects gallery (image tiles) */
+    .projects-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    .tile{background:var(--panel);border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(11,15,26,0.04)}
+    .tile img{width:100%;height:140px;object-fit:cover}
+    .tile .meta{padding:12px}
+
+    /* pricing blocks like prototype */
+    .pricing-row{display:flex;gap:12px;margin-top:18px}
+    .price-card{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:10px;flex:1;box-shadow:0 10px 30px rgba(2,6,23,0.04)}
+    .price-card h3{margin:0}
+    .price-card .cost{font-size:20px;margin-top:6px;font-weight:800}
+
+    /* request form wide like prototype */
+    .request-section{background:var(--panel);padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 12px 40px rgba(11,15,26,0.05)}
+    .request-grid{display:grid;grid-template-columns:1fr 420px;gap:18px}
+    .request-left label{display:block;font-weight:700;margin-bottom:6px}
+    .input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(11,15,26,0.06);background:transparent;margin-bottom:12px}
+    .submit-btn{display:block;width:100%;padding:14px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--blue));color:white;border:none;font-weight:800}
+
+    /* faq grid */
+    .faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .faq{background:var(--panel);padding:14px;border-radius:10px}
+
+    /* footer dark band */
+    footer{background:#0b1220;color:#cbd5e1;padding:18px;border-radius:8px;margin-top:26px}
+    footer a{color:#cbd5e1;text-decoration:none}
+
+    /* responsiveness */
+    @media (max-width:1000px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .projects-tiles{grid-template-columns:repeat(2,1fr)}
+      .request-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:700px){
+      .services-grid{grid-template-columns:1fr}
+      .projects-tiles{grid-template-columns:1fr}
+      .cards-row{flex-direction:column}
+      .hero-band{flex-direction:column;align-items:flex-start}
+    }
+
+    /* animations */
+    .anim-fade{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+    .anim-fade.show{opacity:1;transform:none}
+
+    .service-section {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 20px;
+}
+
+.service-block {
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(11,15,26,0.04);
+  padding: 20px;
+  transition: transform .3s ease;
+}
+.service-block:hover { transform: translateY(-3px); }
+
+.service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.service-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.service-header .price {
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.service-desc {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.service-gallery {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 10px;
+}
+.service-gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: scale-down;
+  background-color: #f3f4f6; /* optional backdrop */
+  border-radius: 10px;
+}
+.service-gallery img:hover {
+  transform: scale(1.08);
+}
+/* Special style for tall mobile screenshots */
+.service-gallery img[src*="mobile"], 
+.service-gallery img[alt*="mobile"] {
+  height: auto;
+  max-height: 400px;         /* adjusts how tall it can be */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  background-color: #f9fafb; /* subtle light backdrop */
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.service-block h3:contains("Mobile") ~ .service-gallery {
+  grid-template-columns: 1fr;
+}
+.mobile-gallery {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-items: center;
+}
+.mobile-gallery img {
+  height: auto;
+  width: auto;
+  max-height: 420px;
+  object-fit: contain;
+}
+/* General gallery base */
+.service-gallery {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 🧱 Prototypes — small horizontal images */
+.gallery-prototypes {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.gallery-prototypes img {
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 📱 Mobile Apps — tall phone screenshots */
+.gallery-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.gallery-mobile img {
+  height: 420px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* 💻 Web — wide desktop captures */
+.gallery-web {
+  grid-template-columns: 1fr;
+}
+.gallery-web img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+/* 🪶 Logos — small squares */
+.gallery-logos {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.gallery-logos img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+/* 📚 Book Covers — vertical art */
+.gallery-books {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.gallery-books img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* 💌 Invitations — decorative verticals */
+.gallery-invites {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.gallery-invites img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+/* 💼 Business Cards — vertical rectangle design */
+.gallery-business {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  justify-items: center;
+  align-items: start;
+  padding: 8px;
+}
+
+.gallery-business img {
+  width: auto;
+  height: 340px;                 /* keeps them balanced visually */
+  max-width: 100%;
+  object-fit: contain;            /* shows full design without crop */
+  border-radius: 16px;
+  background: #f9fafb;            /* subtle neutral frame */
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover effect */
+.gallery-business img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+}
+/* 🧩 Presentations — landscape 16:9 slides */
+.gallery-presentations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  padding: 10px;
+}
+
+.gallery-presentations img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;             /* keeps consistent shape */
+  object-fit: contain;              /* shows the full slide */
+  border-radius: 14px;
+  background: #f9fafb;              /* subtle neutral frame */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover lift */
+.gallery-presentations img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.gallery-cv {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-cv img {
+  width: 260px;             /* fixed width */
+  height: auto;             /* keeps correct 1414x2000 ratio */
+  border-radius: 12px;
+  background: #f5f6fa;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-cv img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="top-left">
+        <div class="brand"><div class="logo">TD&D</div><div><div style="font-weight:700">Team Dev & Design</div><div style="font-size:12px;color:var(--muted)">App dev • AI • Design</div></div></div>
+      </div>
+      <div class="nav-mini">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero-band anim-fade" id="home">
+      <div class="hero-left">
+        <h1 data-en>Transform your idea into reality</h1>
+        <p data-en>From app development to AI solutions — we design, build and incubate startups. Student-friendly pricing & fast response.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="reqHero">Request a Service</button>
+          <button class="btn btn-ghost" id="exploreHero">Explore Services</button>
+        </div>
+      </div>
+      <div style="width:420px">
+        <div style="background:white;border-radius:12px;padding:14px;box-shadow:0 10px 30px rgba(11,15,26,0.06)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;color:white">TD</div>
+            <div>
+              <div style="font-weight:700">Quick Summary</div>
+              <div style="font-size:13px;color:var(--muted)">App dev • AI/ML • Design • Prototypes • Incubation</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;justify-content:space-between">
+            <button class="btn btn-ghost">Get Started</button>
+            <button class="btn btn-primary" id="sideContact">Contact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+<section id="services" class="anim-fade">
+  <div class="section-title">
+    <h2 data-en>Our Services</h2>
+    <div style="color:var(--muted);font-size:14px">Comprehensive solutions for students & startups</div>
+  </div>
+
+  <div class="service-section">
+
+            <!-- presentations -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Prototypes</h3>
+        <div class="price">From 5000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        <p class="service-intro">
+              Presentations should speak even when you don’t. Slides that flow smooth — strong visuals, no clutter, straight to the point.
+</p>
+
+      </div>
+      <div class="service-gallery gallery-presentations">
+        <img src="imgs\presentation\Design Pattern MVVM.jpg" alt="proto1">
+        <img src="imgs\presentation\MeQat Presentation.jpg" alt="proto2">
+        <img src="imgs\presentation\zeus.jpg" alt="proto3">
+      </div>
+    </div>
+
+        <!-- Prototypes -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Prototypes</h3>
+        <div class="price">From 8000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Rapid Figma prototypes and clickable demos for testing and investor presentations.
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="https://picsum.photos/seed/proto1/400/250" alt="proto1">
+        <img src="https://picsum.photos/seed/proto2/400/250" alt="proto2">
+        <img src="https://picsum.photos/seed/proto3/400/250" alt="proto3">
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Mobile App Development</h3>
+        <div class="price">From 13,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Native & cross-platform apps (Flutter, Android). We build fast, clean mobile experiences.
+      </div>
+      <div class="service-gallery mobile-gallery">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-39.jpg" alt="mobile app 1">
+        <img src="imgs\mobile\photo_2025-06-08_21-58-57.jpg" alt="mobile app 2">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-14.jpg" alt="mobile app 3">
+        <img src="imgs\mobile\photo_2025-06-08_21-59-43.jpg" alt="mobile app 5">
+      </div>
+    </div>
+
+    <!-- web -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Web Development</h3>
+        <div class="price">From 16,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Modern responsive websites, dashboards, and PWAs — built to impress and perform.
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="imgs\web\Screenshot 2025-11-02 125551.png" alt="web 1">
+        <img src="imgs\web\Screenshot 2025-10-31 112943.png" alt="web 2">
+        <img src="imgs\web\Screenshot 2025-10-31 113013.png" alt="web 3">
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>AI Models</h3>
+        <div class="price">From 20,000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Model prototyping, training, and deployment. Deep learning, Maching learning..
+      </div>
+      <div class="service-gallery gallery-prototypes">
+        <img src="imgs\ai\Screenshot 2025-11-02 231542.png" alt="ai1">
+        <img src="imgs\ai\Screenshot 2025-11-02 231601.png" alt="ai2">
+        <img src="https://picsum.photos/seed/ai3/400/250" alt="ai3">
+      </div>
+    </div>
+
+        <!-- logo -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Logo && Branding </h3>
+        <div class="price">From 6000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Logos and brand kits. Make your product unforgettable.
+      </div>
+      <div class="service-gallery mobile-gallery">
+        
+        <img src="imgs\logos\photo_2025-11-02_17-02-56.jpg" alt="design3">
+        <img src="imgs\logos\photo_2025-11-02_16-48-04.jpg" alt="design4">
+        <img src="imgs\logos\photo_2025-11-02_17-00-27.jpg" alt="design5">
+        <img src="imgs\logos\photo_2025-11-02_16-47-58.jpg" alt="design1">
+      </div>
+    </div>
+
+    <!-- Business Cards -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Business Cards && Branding </h3>
+        <div class="price">From 6000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Visual identities. Mark your presence.
+      </div>
+      <div class="service-gallery gallery-business">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-18.jpg" alt="design1">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-28.jpg" alt="design2">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-35.jpg" alt="design3">
+        <img src="imgs\Business Cards\photo_2025-11-02_13-03-37.jpg" alt="design4">
+      </div>
+    </div>
+
+        <!-- Books -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Book Covers</h3>
+        <div class="price">From 10000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Turn ideas into covers. To catch your story.
+      </div>
+      <div class="service-gallery gallery-books">
+        <img src="imgs\books\DEAR GRAVITY (4).jpg" alt="design1">
+        <img src="imgs\books\How to Disappear Entirely (4).jpg" alt="design2">
+        <img src="imgs\books\The Archivist of Lost Things (3).jpg" alt="design3">
+        <img src="imgs\books\Soft Apocalypse (6).jpg" alt="design4">
+      </div>
+    </div>
+
+            <!-- invites -->
+    <div class="service-block">
+      <div class="service-header">
+        <h3 data-en>Events invitations</h3>
+        <div class="price">From 5000DA</div>
+      </div>
+      <div class="service-desc" data-en>
+        Your event invites. Make your guests amazed.
+      </div>
+      <div class="service-gallery gallery-invites">
+        <img src="imgs\invitations\wed inv1.jpg" alt="design1">
+        <img src="imgs\invitations\wed inv6.jpg" alt="design2">
+        <img src="imgs\invitations\wed inv7.jpg" alt="design3">
+        <img src="imgs\invitations\wed inv10.jpg" alt="design4">
+      </div>
+    </div>
+    
+<!-- CV Design -->
+<div class="service-block">
+  <div class="service-header">
+    <h3 data-en>CV / Resume Design</h3>
+    <div class="price">From 5,000 DA</div>
+  </div>
+  <div class="service-desc" data-en>
+    Professionally designed CVs and resumes that stand out in job or university applications. Clean, modern layouts tailored to your field — because first impressions matter.
+  </div>
+  <div class="service-gallery gallery-cv">
+    <img src="imgs/cv/Djelab Nourhane.jpg" alt="CV design 1">
+    <img src="imgs/cv/GOUCEM_Meriem_Malak_CV.jpg" alt="CV design 2">
+    <img src="imgs/cv/Modern Professional CV Resume.jpg" alt="CV design 3">
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+
+    <section id="projects" class="anim-fade">
+      <div class="section-title" style="margin-top:22px">
+        <h2 data-en>Projects</h2>
+        <div style="color:var(--muted);font-size:14px">Work with universities & startups</div>
+      </div>
+      <div class="projects-tiles">
+        <div class="tile"><img src="https://picsum.photos/seed/p1/600/300" alt="p1"><div class="meta"><strong>Campus App</strong><div class="muted">Mobile for students</div></div></div>
+        <div class="tile"><img src="https://picsum.photos/seed/p2/600/300" alt="p2"><div class="meta"><strong>ML Research Tool</strong><div class="muted">Research & dashboards</div></div></div>
+        <div class="tile"><img src="https://picsum.photos/seed/p3/600/300" alt="p3"><div class="meta"><strong>Branding — Cassandre</strong><div class="muted">Identity & assets</div></div></div>
+      </div>
+    </section>
+
+    <section id="pricing" class="anim-fade">
+      <div class="section-title" style="margin-top:22px">
+        <h2 data-en>Pricing</h2>
+        <div style="color:var(--muted);font-size:14px">Transparent, student-first prices</div>
+      </div>
+      <div class="pricing-row">
+        <div class="price-card"><h3>Student Pack</h3><div class="cost">$120</div><div class="muted">Landing + UI — 1 week</div></div>
+        <div class="price-card"><h3>Startup Pack</h3><div class="cost">$600</div><div class="muted">MVP + prototype — 3-4 weeks</div></div>
+        <div class="price-card"><h3>Growth Pack</h3><div class="cost">$1,800</div><div class="muted">Full product + docs</div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="anim-fade">
+      <div class="section-title" style="margin-top:22px"><h2 data-en>Request a Service</h2><div style="color:var(--muted);font-size:14px">Fill the form or email us — no payments on-site</div></div>
+
+      <div class="request-section">
+        <div class="request-grid">
+          <div class="request-left">
+            <form id="requestForm">
+              <label for="name" data-en>Full Name</label>
+              <input id="name" name="name" class="input" placeholder="Your name" required />
+
+              <label for="email" data-en>Email</label>
+              <input id="email" name="email" type="email" class="input" placeholder="you@domain.com" required />
+
+              <label for="service" data-en>Service Needed</label>
+              <select id="service" name="service" class="input">
+                <option value="mobile">Mobile App Development</option>
+                <option value="web">Web Development</option>
+                <option value="ai">AI / Deep Learning</option>
+                <option value="design">Visual Design</option>
+                <option value="prototype">No-code Prototype</option>
+              </select>
+
+              <label for="budget" data-en>Estimated Budget</label>
+              <input id="budget" name="budget" class="input" placeholder="$" />
+
+              <label for="desc" data-en>Project Description</label>
+              <textarea id="desc" name="desc" rows="5" class="input" placeholder="Short description..." required></textarea>
+
+              <button class="submit-btn" type="submit">Submit Request</button>
+            </form>
+          </div>
+
+          <aside style="background:linear-gradient(180deg, rgba(138,79,255,0.06), rgba(59,130,246,0.03));padding:18px;border-radius:10px">
+            <div style="font-weight:800">Request a Service</div>
+            <div style="color:var(--muted);margin-top:8px;font-size:14px">Tell us about your project and we’ll get back within 24 hours.</div>
+            <div style="margin-top:12px;font-size:14px">
+              <div><strong>Email</strong>: <a href="mailto:hello@teamdev.design">goucem.meriemmalak.001@gmail.com</a></div>
+              <div style="margin-top:8px"><strong>Social</strong>: FB • Instagram • Telegram</div>
+              <div style="margin-top:12px;color:var(--muted);font-size:13px">We don't charge on-site. Prices are display-only. For custom quotes contact us.</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="anim-fade">
+      <div class="section-title" style="margin-top:22px"><h2 data-en>FAQ</h2><div style="color:var(--muted);font-size:14px">Quick answers</div></div>
+      <div class="faq-grid">
+        <div class="faq"><strong data-en>How long till first demo?</strong><p class="muted">Usually 1–2 weeks for a basic prototype.</p></div>
+        <div class="faq"><strong data-en>Do you work with startups?</strong><p class="muted">Yes — incubation & go-to-market support available.</p></div>
+        <div class="faq"><strong data-en>Is pricing flexible?</strong><p class="muted">Student discounts and phased payments available.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:800">Team Dev & Design</div>
+          <div style="color:#94a3b8">© 2025 — All rights reserved</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a href="mailto:hello@teamdev.design">hello@teamdev.design</a>
+          <a href="#">FB</a>
+          <a href="#">Instagram</a>
+          <a href="#">Telegram</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // reveal animation
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:0.12});
+    document.querySelectorAll('.anim-fade').forEach(el=>obs.observe(el));
+
+    // smooth anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h.length>1){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth',block:'start'}); } }));
+
+    // form submit emulation
+    document.getElementById('requestForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = Object.fromEntries(new FormData(e.target));
+      console.log('submit',fd);
+      const toast = document.createElement('div'); toast.textContent='Request received — we will reply within 24h';
+      toast.style.position='fixed';toast.style.left='50%';toast.style.transform='translateX(-50%)';toast.style.bottom='24px';toast.style.padding='12px 18px';toast.style.background='linear-gradient(90deg,var(--purple),var(--blue))';toast.style.color='white';toast.style.borderRadius='10px';toast.style.boxShadow='0 10px 30px rgba(11,15,26,0.2)';document.body.appendChild(toast);
+      setTimeout(()=>{toast.remove();},3200);
+      e.target.reset();
+    });
+
+    // hero buttons
+    document.getElementById('reqHero').addEventListener('click', ()=> location.hash='#contact');
+    document.getElementById('exploreHero').addEventListener('click', ()=> location.hash='#services');
+    document.getElementById('sideContact').addEventListener('click', ()=> location.hash='#contact');
+  </script>
+</body>
+>>>>>>> 84e13f8c34d3228d600c73f8e7b4b315fc5a4e01
+</html>
