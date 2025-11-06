@@ -1,0 +1,623 @@
+<<<<<<< HEAD
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team Dev & Design — Premium Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0710;
+      --purple:#8A4FFF; /* Pitch purple */
+      --purple-2:#6f3fe6;
+      --glass: rgba(255,255,255,0.04);
+      --muted: #bfb6d9;
+      --radius:18px;
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(180deg,#070510 0%, #0b0710 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:48px 24px}
+
+    /* NAV */
+    header{position:fixed;top:18px;left:0;right:0;z-index:60;backdrop-filter: blur(6px);}
+    .nav-wrap{max-width:var(--max-width);margin:0 auto;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple-2));display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 6px 20px rgba(138,79,255,0.18)}
+    .logo span{font-size:18px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:#fff}
+
+    /* HERO */
+    .hero{padding-top:120px;padding-bottom:40px}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
+    .eyebrow{display:inline-block;background:linear-gradient(90deg, rgba(138,79,255,0.14), rgba(111,63,230,0.08));padding:8px 12px;border-radius:999px;color:var(--purple);font-weight:700;margin-bottom:18px}
+    h1{font-size:44px;margin:0 0 14px;line-height:1.03}
+    p.lead{color:var(--muted);margin:0 0 26px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--purple);border:none;padding:12px 18px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(138,79,255,0.12);transition:transform .18s ease}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn:active{transform:translateY(2px)}
+
+    /* feature card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.03)}
+    .stats{display:flex;gap:12px;align-items:center}
+    .stat{font-weight:700;color:#fff}
+
+    /* SERVICES vertical list */
+    .services{margin-top:40px;display:flex;flex-direction:column;gap:64px;padding-bottom:80px}
+    section.service{display:block}
+    section.service .service-inner{display:flex;flex-direction:column;gap:20px}
+    .service-h{display:flex;align-items:center;gap:18px}
+    .service-h h2{margin:0;font-size:24px}
+    .service-desc{color:var(--muted);max-width:760px}
+
+    /* carousel */
+    .carousel-wrap{position:relative;margin-top:6px}
+    .carousel{display:flex;gap:12px;overflow:hidden;padding:8px 2px}
+    .carousel-track{display:flex;gap:12px;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+    .card-img{min-width:220px;height:140px;border-radius:12px;background:#111;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,0.04)}
+    .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(180deg, rgba(11,7,16,0.6), rgba(11,7,16,0.2));border-radius:999px;border:1px solid rgba(255,255,255,0.06);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .carousel-btn.left{left:-6px}
+    .carousel-btn.right{right:-6px}
+    .carousel-btn svg{width:18px;height:18px}
+
+    /* contact */
+    footer{padding:48px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:40px}
+    .contact-grid{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start}
+    .socials{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,0.03);display:inline-flex;gap:10px;align-items:center}
+
+    /* reveal animation */
+    .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:all .7s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .logo{width:40px;height:40px}
+      .card-img{min-width:180px;height:120px}
+    }
+    @media (max-width:520px){
+      h1{font-size:30px}
+      .card-img{min-width:160px;height:110px}
+      header{top:8px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>TD</span></div>
+        <div>
+          <div style="font-weight:800">Team Dev & Design</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Apps • AI • Design • Startups</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Premium • Fast • Clean</div>
+          <h1>We build apps, AI models, and brands that actually win.</h1>
+          <p class="lead">Team Dev & Design — full-stack product agency: mobile, web, desktop, ML/AI, no-code prototypes, system diagrams, visual design, pitch videos and startup incubation. We help teams ship fast and look premium while doing it.</p>
+          <div class="cta">
+            <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+            <button class="btn secondary" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">Our services</button>
+          </div>
+          <div style="margin-top:22px" class="card">
+            <div class="stats">
+              <div class="stat">Trusted by early-stage startups</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" aria-hidden="true">
+          <div style="padding:18px">
+            <strong style="display:block">Showcase</strong>
+            <p style="margin:8px 0 0;color:var(--muted)">Example screens and work — swipe the galleries for each service below to view samples.</p>
+            <div style="height:260px;margin-top:12px;background:linear-gradient(135deg,var(--purple),var(--purple-2));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 50px rgba(138,79,255,0.12)">
+              <div style="text-align:center;opacity:.95">
+                <div style="font-weight:800;font-size:20px">Premium design</div>
+                <div style="color:rgba(255,255,255,0.9);margin-top:6px">Clean UI, fast transitions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <!-- repeat this block for each service (we provide 8) -->
+      <script type="text/template" id="service-template">
+        <section class="service reveal">
+          <div class="service-inner card">
+            <div class="service-h">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.06)"/></svg>
+              <div>
+                <h2 class="service-title">{{title}}</h2>
+                <div class="service-desc">{{desc}}</div>
+              </div>
+            </div>
+            <div class="carousel-wrap">
+              <button class="carousel-btn left" aria-label="Previous"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 6L9 12l6 6"></path></svg></button>
+              <div class="carousel" tabindex="0">
+                <div class="carousel-track">
+                  <!-- cards inserted here -->
+                </div>
+              </div>
+              <button class="carousel-btn right" aria-label="Next"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path></svg></button>
+            </div>
+          </div>
+        </section>
+      </script>
+
+    </section>
+
+    <section id="work" class="reveal" style="margin-top:10px">
+      <div class="card">
+        <h3 style="margin:0 0 10px">How we work</h3>
+        <p style="color:var(--muted);margin:0">Discovery → Prototype → Build → Launch → Incubate. We ship high-quality MVPs and iterate with measurable metrics.</p>
+      </div>
+    </section>
+
+    <footer id="contact" class="reveal">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+          <div>
+            <h3 style="margin:0">Let's talk</h3>
+            <p style="color:var(--muted);margin-top:6px">Email us or hit our socials — we'll reply within one business day.</p>
+            <div style="margin-top:12px">
+              <div class="chip">📧 <a href="mailto:hello@teamdev.design" style="color:var(--muted);text-decoration:none">hello@teamdev.design</a></div>
+              <div class="chip" style="margin-left:8px">📞 <a href="tel:+0000000000" style="color:var(--muted);text-decoration:none">+00 000 000 000</a></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700">Follow</div>
+            <div class="socials" style="margin-top:8px">
+              <a class="chip" href="#" aria-label="Facebook">f Facebook</a>
+              <a class="chip" href="#" aria-label="Instagram">ig Instagram</a>
+              <a class="chip" href="#" aria-label="TikTok">tt TikTok</a>
+              <a class="chip" href="#" aria-label="Telegram">tg Telegram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:18px;color:var(--muted);font-size:13px">© Team Dev & Design — All rights reserved</div>
+    </footer>
+
+  </main>
+
+  <script>
+    // DATA: Services and short descriptions
+    const SERVICES = [
+      {key:'app', title:'App development (mobile, web, desktop)', desc:'Native & cross-platform apps, progressive web apps, desktop builds — polished UI, fast performance.'},
+      {key:'ai', title:'AI/ML & deep learning models', desc:'Custom models, data pipelines, MLOps-ready deployments and model optimization.'},
+      {key:'nocode', title:'No-code prototypes', desc:'Clickable prototypes and rapid MVPs using leading no-code stacks for fast validation.'},
+      {key:'systems', title:'System diagrams & architecture', desc:'Clear diagrams, sequence flows, infra and cost-conscious architecture design.'},
+      {key:'visual', title:'Visual design: logos, invites, branding', desc:'Brand identities, marketing assets, editorial and social-ready visuals.'},
+      {key:'present', title:'Presentations & pitch decks', desc:'Investor-ready decks, animated presentations and concise storytelling.'},
+      {key:'video', title:'Brand videos & demos', desc:'Short product demos, motion design, explainer videos and launch clips.'},
+      {key:'incub', title:'Startup incubation & services', desc:'From legal checklist to go-to-market and fundraising playbooks.'}
+    ];
+
+    // util: create placeholder images (picsum) - replace these URLs with your own images in production
+    function makeImageUrls(seed){
+      const arr = [];
+      for(let i=1;i<=8;i++) arr.push(`https://picsum.photos/seed/${seed}-${i}/800/600`);
+      return arr;
+    }
+
+    // build services into DOM
+    (function renderServices(){
+      const container = document.querySelector('.services');
+      const template = document.getElementById('service-template').innerHTML;
+      SERVICES.forEach((s, idx)=>{
+        const html = template.replace('{{title}}', s.title).replace('{{desc}}', s.desc);
+        const frag = document.createRange().createContextualFragment(html);
+        // fill images
+        const imgs = makeImageUrls(s.key);
+        const track = frag.querySelector('.carousel-track');
+        imgs.forEach(u=>{
+          const d = document.createElement('div'); d.className='card-img';
+          const im = document.createElement('img'); im.src=u; im.alt=s.title + ' sample';
+          d.appendChild(im); track.appendChild(d);
+        });
+        container.appendChild(frag);
+      });
+      initCarousels();
+      initReveal();
+    })();
+
+    // CAROUSEL logic - simple, supports multiple instances
+    function initCarousels(){
+      const carousels = document.querySelectorAll('.carousel-wrap');
+      carousels.forEach(wrap=>{
+        const track = wrap.querySelector('.carousel-track');
+        const left = wrap.querySelector('.carousel-btn.left');
+        const right = wrap.querySelector('.carousel-btn.right');
+        const card = wrap.querySelector('.card-img');
+        let index = 0;
+        const cardWidth = () => wrap.querySelector('.card-img')?.getBoundingClientRect().width + 12 || 232;
+        function update(){
+          const w = cardWidth();
+          track.style.transform = `translateX(${-(index * w)}px)`;
+        }
+        left.addEventListener('click', ()=>{ index = Math.max(0, index-1); update(); });
+        right.addEventListener('click', ()=>{ const max = Math.max(0, track.children.length - Math.floor((wrap.querySelector('.carousel').offsetWidth) / cardWidth())); index = Math.min(max, index+1); update(); });
+        // drag support
+        let startX=null,curX=0,dragging=false,base=0;
+        wrap.querySelector('.carousel').addEventListener('pointerdown', e=>{ dragging=true; startX=e.clientX; wrap.querySelector('.carousel').setPointerCapture(e.pointerId); base = -index * cardWidth(); track.style.transition='none'; });
+        window.addEventListener('pointermove', e=>{ if(!dragging) return; curX = e.clientX - startX; track.style.transform = `translateX(${base + curX}px)`; });
+        window.addEventListener('pointerup', e=>{ if(!dragging) return; dragging=false; track.style.transition='transform .45s cubic-bezier(.2,.9,.3,1)'; const moved = - (base + curX) / cardWidth(); index = Math.round(moved); index = Math.max(0, Math.min(index, track.children.length-1)); update(); startX=null; curX=0; });
+        // keyboard
+        wrap.querySelector('.carousel').addEventListener('keydown', e=>{
+          if(e.key==='ArrowLeft') left.click();
+          if(e.key==='ArrowRight') right.click();
+        });
+        // initial
+        update();
+        window.addEventListener('resize', ()=>{ update(); });
+      });
+    }
+
+    // reveal on scroll using IntersectionObserver
+    function initReveal(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting) en.target.classList.add('visible');
+        });
+      }, {threshold:0.12});
+      document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    }
+
+    // small UX: smooth anchor link behavior
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const h = a.getAttribute('href');
+        if(h.length>1){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth'}); }
+      })
+    });
+
+    // Accessibility: focus outlines when using keyboard
+    (function(){
+      let usingKeyboard=false;
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Tab') { usingKeyboard=true; document.body.classList.add('kbd'); }});
+      window.addEventListener('mousedown', ()=>{ usingKeyboard=false; document.body.classList.remove('kbd'); });
+    })();
+  </script>
+</body>
+</html>
+=======
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team Dev & Design — Premium Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0710;
+      --purple:#8A4FFF; /* Pitch purple */
+      --purple-2:#6f3fe6;
+      --glass: rgba(255,255,255,0.04);
+      --muted: #bfb6d9;
+      --radius:18px;
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(180deg,#070510 0%, #0b0710 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:48px 24px}
+
+    /* NAV */
+    header{position:fixed;top:18px;left:0;right:0;z-index:60;backdrop-filter: blur(6px);}
+    .nav-wrap{max-width:var(--max-width);margin:0 auto;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple-2));display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 6px 20px rgba(138,79,255,0.18)}
+    .logo span{font-size:18px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:#fff}
+
+    /* HERO */
+    .hero{padding-top:120px;padding-bottom:40px}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center}
+    .eyebrow{display:inline-block;background:linear-gradient(90deg, rgba(138,79,255,0.14), rgba(111,63,230,0.08));padding:8px 12px;border-radius:999px;color:var(--purple);font-weight:700;margin-bottom:18px}
+    h1{font-size:44px;margin:0 0 14px;line-height:1.03}
+    p.lead{color:var(--muted);margin:0 0 26px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--purple);border:none;padding:12px 18px;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(138,79,255,0.12);transition:transform .18s ease}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn:active{transform:translateY(2px)}
+
+    /* feature card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.03)}
+    .stats{display:flex;gap:12px;align-items:center}
+    .stat{font-weight:700;color:#fff}
+
+    /* SERVICES vertical list */
+    .services{margin-top:40px;display:flex;flex-direction:column;gap:64px;padding-bottom:80px}
+    section.service{display:block}
+    section.service .service-inner{display:flex;flex-direction:column;gap:20px}
+    .service-h{display:flex;align-items:center;gap:18px}
+    .service-h h2{margin:0;font-size:24px}
+    .service-desc{color:var(--muted);max-width:760px}
+
+    /* carousel */
+    .carousel-wrap{position:relative;margin-top:6px}
+    .carousel{display:flex;gap:12px;overflow:hidden;padding:8px 2px}
+    .carousel-track{display:flex;gap:12px;transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+    .card-img{min-width:220px;height:140px;border-radius:12px;background:#111;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,0.04)}
+    .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(180deg, rgba(11,7,16,0.6), rgba(11,7,16,0.2));border-radius:999px;border:1px solid rgba(255,255,255,0.06);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .carousel-btn.left{left:-6px}
+    .carousel-btn.right{right:-6px}
+    .carousel-btn svg{width:18px;height:18px}
+
+    /* contact */
+    footer{padding:48px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:40px}
+    .contact-grid{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start}
+    .socials{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,0.03);display:inline-flex;gap:10px;align-items:center}
+
+    /* reveal animation */
+    .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:all .7s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .logo{width:40px;height:40px}
+      .card-img{min-width:180px;height:120px}
+    }
+    @media (max-width:520px){
+      h1{font-size:30px}
+      .card-img{min-width:160px;height:110px}
+      header{top:8px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>TD</span></div>
+        <div>
+          <div style="font-weight:800">Team Dev & Design</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Apps • AI • Design • Startups</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Premium • Fast • Clean</div>
+          <h1>We build apps, AI models, and brands that actually win.</h1>
+          <p class="lead">Team Dev & Design — full-stack product agency: mobile, web, desktop, ML/AI, no-code prototypes, system diagrams, visual design, pitch videos and startup incubation. We help teams ship fast and look premium while doing it.</p>
+          <div class="cta">
+            <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get a quote</button>
+            <button class="btn secondary" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">Our services</button>
+          </div>
+          <div style="margin-top:22px" class="card">
+            <div class="stats">
+              <div class="stat">Trusted by early-stage startups</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" aria-hidden="true">
+          <div style="padding:18px">
+            <strong style="display:block">Showcase</strong>
+            <p style="margin:8px 0 0;color:var(--muted)">Example screens and work — swipe the galleries for each service below to view samples.</p>
+            <div style="height:260px;margin-top:12px;background:linear-gradient(135deg,var(--purple),var(--purple-2));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 50px rgba(138,79,255,0.12)">
+              <div style="text-align:center;opacity:.95">
+                <div style="font-weight:800;font-size:20px">Premium design</div>
+                <div style="color:rgba(255,255,255,0.9);margin-top:6px">Clean UI, fast transitions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <!-- repeat this block for each service (we provide 8) -->
+      <script type="text/template" id="service-template">
+        <section class="service reveal">
+          <div class="service-inner card">
+            <div class="service-h">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.06)"/></svg>
+              <div>
+                <h2 class="service-title">{{title}}</h2>
+                <div class="service-desc">{{desc}}</div>
+              </div>
+            </div>
+            <div class="carousel-wrap">
+              <button class="carousel-btn left" aria-label="Previous"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 6L9 12l6 6"></path></svg></button>
+              <div class="carousel" tabindex="0">
+                <div class="carousel-track">
+                  <!-- cards inserted here -->
+                </div>
+              </div>
+              <button class="carousel-btn right" aria-label="Next"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path></svg></button>
+            </div>
+          </div>
+        </section>
+      </script>
+
+    </section>
+
+    <section id="work" class="reveal" style="margin-top:10px">
+      <div class="card">
+        <h3 style="margin:0 0 10px">How we work</h3>
+        <p style="color:var(--muted);margin:0">Discovery → Prototype → Build → Launch → Incubate. We ship high-quality MVPs and iterate with measurable metrics.</p>
+      </div>
+    </section>
+
+    <footer id="contact" class="reveal">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+          <div>
+            <h3 style="margin:0">Let's talk</h3>
+            <p style="color:var(--muted);margin-top:6px">Email us or hit our socials — we'll reply within one business day.</p>
+            <div style="margin-top:12px">
+              <div class="chip">📧 <a href="mailto:hello@teamdev.design" style="color:var(--muted);text-decoration:none">hello@teamdev.design</a></div>
+              <div class="chip" style="margin-left:8px">📞 <a href="tel:+0000000000" style="color:var(--muted);text-decoration:none">+00 000 000 000</a></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:700">Follow</div>
+            <div class="socials" style="margin-top:8px">
+              <a class="chip" href="#" aria-label="Facebook">f Facebook</a>
+              <a class="chip" href="#" aria-label="Instagram">ig Instagram</a>
+              <a class="chip" href="#" aria-label="TikTok">tt TikTok</a>
+              <a class="chip" href="#" aria-label="Telegram">tg Telegram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:18px;color:var(--muted);font-size:13px">© Team Dev & Design — All rights reserved</div>
+    </footer>
+
+  </main>
+
+  <script>
+    // DATA: Services and short descriptions
+    const SERVICES = [
+      {key:'app', title:'App development (mobile, web, desktop)', desc:'Native & cross-platform apps, progressive web apps, desktop builds — polished UI, fast performance.'},
+      {key:'ai', title:'AI/ML & deep learning models', desc:'Custom models, data pipelines, MLOps-ready deployments and model optimization.'},
+      {key:'nocode', title:'No-code prototypes', desc:'Clickable prototypes and rapid MVPs using leading no-code stacks for fast validation.'},
+      {key:'systems', title:'System diagrams & architecture', desc:'Clear diagrams, sequence flows, infra and cost-conscious architecture design.'},
+      {key:'visual', title:'Visual design: logos, invites, branding', desc:'Brand identities, marketing assets, editorial and social-ready visuals.'},
+      {key:'present', title:'Presentations & pitch decks', desc:'Investor-ready decks, animated presentations and concise storytelling.'},
+      {key:'video', title:'Brand videos & demos', desc:'Short product demos, motion design, explainer videos and launch clips.'},
+      {key:'incub', title:'Startup incubation & services', desc:'From legal checklist to go-to-market and fundraising playbooks.'}
+    ];
+
+    // util: create placeholder images (picsum) - replace these URLs with your own images in production
+    function makeImageUrls(seed){
+      const arr = [];
+      for(let i=1;i<=8;i++) arr.push(`https://picsum.photos/seed/${seed}-${i}/800/600`);
+      return arr;
+    }
+
+    // build services into DOM
+    (function renderServices(){
+      const container = document.querySelector('.services');
+      const template = document.getElementById('service-template').innerHTML;
+      SERVICES.forEach((s, idx)=>{
+        const html = template.replace('{{title}}', s.title).replace('{{desc}}', s.desc);
+        const frag = document.createRange().createContextualFragment(html);
+        // fill images
+        const imgs = makeImageUrls(s.key);
+        const track = frag.querySelector('.carousel-track');
+        imgs.forEach(u=>{
+          const d = document.createElement('div'); d.className='card-img';
+          const im = document.createElement('img'); im.src=u; im.alt=s.title + ' sample';
+          d.appendChild(im); track.appendChild(d);
+        });
+        container.appendChild(frag);
+      });
+      initCarousels();
+      initReveal();
+    })();
+
+    // CAROUSEL logic - simple, supports multiple instances
+    function initCarousels(){
+      const carousels = document.querySelectorAll('.carousel-wrap');
+      carousels.forEach(wrap=>{
+        const track = wrap.querySelector('.carousel-track');
+        const left = wrap.querySelector('.carousel-btn.left');
+        const right = wrap.querySelector('.carousel-btn.right');
+        const card = wrap.querySelector('.card-img');
+        let index = 0;
+        const cardWidth = () => wrap.querySelector('.card-img')?.getBoundingClientRect().width + 12 || 232;
+        function update(){
+          const w = cardWidth();
+          track.style.transform = `translateX(${-(index * w)}px)`;
+        }
+        left.addEventListener('click', ()=>{ index = Math.max(0, index-1); update(); });
+        right.addEventListener('click', ()=>{ const max = Math.max(0, track.children.length - Math.floor((wrap.querySelector('.carousel').offsetWidth) / cardWidth())); index = Math.min(max, index+1); update(); });
+        // drag support
+        let startX=null,curX=0,dragging=false,base=0;
+        wrap.querySelector('.carousel').addEventListener('pointerdown', e=>{ dragging=true; startX=e.clientX; wrap.querySelector('.carousel').setPointerCapture(e.pointerId); base = -index * cardWidth(); track.style.transition='none'; });
+        window.addEventListener('pointermove', e=>{ if(!dragging) return; curX = e.clientX - startX; track.style.transform = `translateX(${base + curX}px)`; });
+        window.addEventListener('pointerup', e=>{ if(!dragging) return; dragging=false; track.style.transition='transform .45s cubic-bezier(.2,.9,.3,1)'; const moved = - (base + curX) / cardWidth(); index = Math.round(moved); index = Math.max(0, Math.min(index, track.children.length-1)); update(); startX=null; curX=0; });
+        // keyboard
+        wrap.querySelector('.carousel').addEventListener('keydown', e=>{
+          if(e.key==='ArrowLeft') left.click();
+          if(e.key==='ArrowRight') right.click();
+        });
+        // initial
+        update();
+        window.addEventListener('resize', ()=>{ update(); });
+      });
+    }
+
+    // reveal on scroll using IntersectionObserver
+    function initReveal(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting) en.target.classList.add('visible');
+        });
+      }, {threshold:0.12});
+      document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    }
+
+    // small UX: smooth anchor link behavior
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const h = a.getAttribute('href');
+        if(h.length>1){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth'}); }
+      })
+    });
+
+    // Accessibility: focus outlines when using keyboard
+    (function(){
+      let usingKeyboard=false;
+      window.addEventListener('keydown', (e)=>{ if(e.key==='Tab') { usingKeyboard=true; document.body.classList.add('kbd'); }});
+      window.addEventListener('mousedown', ()=>{ usingKeyboard=false; document.body.classList.remove('kbd'); });
+    })();
+  </script>
+</body>
+</html>
+>>>>>>> 84e13f8c34d3228d600c73f8e7b4b315fc5a4e01
