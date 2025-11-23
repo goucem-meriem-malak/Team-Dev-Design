@@ -831,6 +831,33 @@
     </div>
   </div>
 </section>
+<script>
+  const form = document.getElementById('requestForm');
+
+  form.addEventListener('submit', function(event) {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('service').value;
+    const desc = document.getElementById('desc').value.trim();
+
+    if (!name || !email || !service || !desc) {
+      event.preventDefault();
+      alert("Please fill in all required fields.");
+      return false;
+    }
+
+    // Optional: validate email format
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!email.match(emailPattern)) {
+      event.preventDefault();
+      alert("Please enter a valid email address.");
+      return false;
+    }
+
+    // If everything okay, allow submission
+    // FormSubmit will handle success redirect to _next
+  });
+</script>
 
 <script>
   // Update minimum price display on service selection
